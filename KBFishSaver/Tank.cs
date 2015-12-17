@@ -32,13 +32,9 @@ namespace KBFishSaver
         //}
         public decimal GetFeed()
         {
-            var feedTot = 0m;
-            foreach (var f in this.FishList)
-            {
-                feedTot += f.Feed;
-            }
 
-            return feedTot;
+            return this.FishList.Sum(i => i.Feed);
+            //return (from i in this.FishList select i.Feed).Sum();
         }
 
         public void AddFish(IFish fish)
