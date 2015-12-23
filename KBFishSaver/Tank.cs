@@ -41,9 +41,11 @@ namespace KBFishSaver
         {
             FishList.Add(fish);
             FishCount = this.FishList.Count();
-
-
-
+        }
+        public void RemFish(IFish fish)
+        {
+            FishList.Remove(fish);
+            FishCount = this.FishList.Count();
         }
     }
 }

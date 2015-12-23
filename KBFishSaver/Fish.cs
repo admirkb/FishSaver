@@ -21,6 +21,8 @@ namespace KBFishSaver
                 TextWriter WriteFileStream = new StreamWriter(filePath);
                 SerializerObj.Serialize(WriteFileStream, this);
 
+                WriteFileStream.Close();
+
 
             }
             catch (Exception ex)

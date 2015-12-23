@@ -150,6 +150,83 @@ namespace FishSaverTest
             // Assert
          
         }
+
+        [TestMethod]
+        public void CatEat1Fish()
+        {
+            // Arrange
+            container.RegisterType<IGoldFish, GoldFish>();
+            container.RegisterType<IAngelFish, AngelFish>();
+
+            var goldlFish = container.Resolve<IGoldFish>();
+            var angelFish = container.Resolve<IAngelFish>();
+
+            List<IFish> FishList = new List<IFish>();
+            FishList.Add(angelFish);
+            FishList.Add(goldlFish);
+            Tank tank = new Tank(FishList);
+
+            container.RegisterType<IPiranhaFish, PiranhaFish>();
+            var piranhaFish = container.Resolve<IPiranhaFish>();
+            tank.AddFish(piranhaFish);
+
+            Cat cat = new Cat();
+            cat.EatFish(piranhaFish);
+            tank.RemFish(piranhaFish);
+
+
+            var outputCatCount = cat.FishCount;
+            var outputCount = tank.FishCount;
+
+            // Act
+            var actualCatCount = 1;
+            var actualCount = 2;
+
+            // Assert
+            Assert.AreEqual(outputCount, actualCount);
+            Assert.AreEqual(outputCatCount, actualCatCount);
+        }
+
+        [TestMethod]
+        public void CatEatAllFish()
+        {
+            // Arrange
+            container.RegisterType<IGoldFish, GoldFish>();
+            container.RegisterType<IAngelFish, AngelFish>();
+
+            var goldlFish = container.Resolve<IGoldFish>();
+            var angelFish = container.Resolve<IAngelFish>();
+
+            List<IFish> FishList = new List<IFish>();
+            FishList.Add(angelFish);
+            FishList.Add(goldlFish);
+            Tank tank = new Tank(FishList);
+
+            container.RegisterType<IPiranhaFish, PiranhaFish>();
+            var piranhaFish = container.Resolve<IPiranhaFish>();
+            tank.AddFish(piranhaFish);
+
+            Cat cat = new Cat();
+            cat.EatFish(angelFish);
+            cat.EatFish(piranhaFish);
+            cat.EatFish(goldlFish);
+            tank.RemFish(angelFish);
+            tank.RemFish(goldlFish);
+            tank.RemFish(piranhaFish);
+
+
+            var outputCatCount = cat.FishCount;
+            var outputTankCount = tank.FishCount;
+
+            // Act
+            var actualCatCount = 3;
+            var actualTankCount = 0;
+
+            // Assert
+            Assert.AreEqual(outputTankCount, actualTankCount);
+            Assert.AreEqual(outputCatCount, actualCatCount);
+        }
+
     }
 
 }

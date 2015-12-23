@@ -41,10 +41,12 @@
   <ItemGroup>
     <Compile Include="AngelFish.cs" />
     <Compile Include="BabelFish.cs" />
+    <Compile Include="Cat.cs" />
     <Compile Include="Fish.cs" />
     <Compile Include="GoldFish.cs" />
     <Compile Include="IAngelFish.cs" />
     <Compile Include="IBabelFish.cs" />
+    <Compile Include="ICat.cs" />
     <Compile Include="IFish.cs" />
     <Compile Include="IGoldFish.cs" />
     <Compile Include="IPiranhaFish.cs" />
